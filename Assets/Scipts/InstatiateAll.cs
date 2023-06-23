@@ -9,7 +9,7 @@ public class InstatiateAll : MonoBehaviour
     public MazeGenerate maze;
     public int enemyCount;
     public float timeInterval; // Interval between enemy spawns
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     public GameObject basePrefab;
 
     int enemyToSpawn; // Personal counter
@@ -62,7 +62,7 @@ public class InstatiateAll : MonoBehaviour
         while (enemyToSpawn > 0)
         {
             // Spawn enemy in top half of a labyrythm
-            Instantiate(enemyPrefab, 
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], 
             GetSpawnPoint(0, maze.width, maze.height / 2, maze.height), 
             Quaternion.identity);
             enemyToSpawn--;

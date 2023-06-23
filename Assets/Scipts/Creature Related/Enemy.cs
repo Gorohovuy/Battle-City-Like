@@ -43,7 +43,7 @@ public class Enemy : Creature
     // Update is called once per frame
     void FixedUpdate()
     {
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, transform.up);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, transform.up, 16);
         if (raycast.transform.GetComponent<EnemyTagetLabel>())
         {
             Shoot();
