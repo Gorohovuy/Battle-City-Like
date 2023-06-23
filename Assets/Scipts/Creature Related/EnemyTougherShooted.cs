@@ -1,10 +1,7 @@
-using UnityEngine;
-
-public class EnemyTougherShooted : MonoBehaviour, IShotable
+public class EnemyTougherShooted : EnemyShooted
 {
-    public int value;
     int hp = 2;
-    public void GetShot()
+    public override void GetShot()
     {
         hp--;
         if (hp == 0)

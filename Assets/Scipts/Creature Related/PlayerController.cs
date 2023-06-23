@@ -47,4 +47,12 @@ public class PlayerController : Creature
             Shoot();
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IPickable>(out IPickable pickable))
+        {
+            pickable.Activate();
+        }    
+    }
 }
