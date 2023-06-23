@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed;
+    public float speed; // Flying speed
 
     public ObjectPool<Bullet> Pool {get; set;}
 
     // Update is called once per frame
     void Update()
     {
+        // Move in direction, in which was spawned
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.TryGetComponent<IShotable>(out IShotable target))
         {
             target.GetShot();

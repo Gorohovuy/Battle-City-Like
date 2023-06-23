@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Creature
 {
     public float calcPathPause;
     public float nextWaypointDistance;
     public float speed;
-    public float shootCD;
-    public Transform target;
-
-    bool canShoot = true;
-    BulletPool bulletPool;
+    public Transform target; 
 
     // For pathfinding
     Path path;
@@ -50,24 +44,21 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, transform.up);
-        if (raycast.transform.GetComponent<EnemyTagetLabel>() && canShoot)
+        if (raycast.transform.GetComponent<EnemyTagetLabel>())
         {
-            Transform bulletTransform = bulletPool.GetBullet().transform;
-            bulletTransform.position = transform.position + transform.up * .6f;
-            bulletTransform.rotation = transform.rotation;
-            canShoot = false;
-            StartCoroutine(ResetCD());
+            Shoot();
         }
         else
             Move();
     }
 
-    private void Move()
+    void Move()
     {
         if (path == null) return;
 
         Vector2 direction = (Vector2)path.vectorPath[currentWayPoint] - rb.position;
 
+        // Allow move only in up, right, bottom or left direction
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             direction.y = 0;
@@ -88,33 +79,5 @@ public class Enemy : MonoBehaviour
         {
             currentWayPoint++;
         }
-    }
-
-    private void Rotate(Vector3 direction)
-    {
-        switch (direction)
-        {
-            case Vector3 v when v.Equals(Vector3.up):
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            break;
-
-            case Vector3 v when v.Equals(Vector3.right):
-            transform.eulerAngles = new Vector3(0, 0, 270);
-            break;
-
-            case Vector3 v when v.Equals(Vector3.down):
-            transform.eulerAngles = new Vector3(0, 0, 180);
-            break;
-
-            case Vector3 v when v.Equals(Vector3.left):
-            transform.eulerAngles = new Vector3(0, 0, 90);
-            break;
-        }
-    }
-
-    IEnumerator ResetCD()
-    {
-        yield return new WaitForSeconds(shootCD);
-        canShoot = true;
     }
 }

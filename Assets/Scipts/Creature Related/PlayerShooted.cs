@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerShooted : MonoBehaviour, IShotable
 {
-    private int hp = 3;
-    private Vector3 spawn;
-    private GameManager gameManager;
+    int hp = 3;
+    Vector3 spawn; // Point to respawn after collision with bullet
+    GameManager gameManager;
     void Start()
     {
         spawn = transform.position;

@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/// <summary>
+/// Class for handlind usage of Bullets
+/// </summary>
 public class BulletPool : MonoBehaviour
 {
     public GameObject bulletPrefab;

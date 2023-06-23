@@ -2,7 +2,7 @@ using UnityEngine;
 using Pathfinding;
 
 /// <summary>
-/// Attached GameObject will be oneshoted
+/// Attached wall will be oneshoted
 /// </summary>
 public class WeakWall : MonoBehaviour, IShotable
 {

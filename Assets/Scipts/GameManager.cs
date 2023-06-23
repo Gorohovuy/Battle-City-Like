@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+/// <summary>
+/// Handling game loop. Changing UI content
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI playerHPText;

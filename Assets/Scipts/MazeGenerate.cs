@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class MazeGenerate : MonoBehaviour
 {
-    public int childCount;
     public int width;   // Width of the maze
     public int height;  // Height of the maze
     public float cellWidth; // Width of the cell
@@ -18,7 +17,7 @@ public class MazeGenerate : MonoBehaviour
     [Range(0, 1)]
     public float rateOfWeakWalls;
 
-    private bool[,] maze;  // 2D array to store the maze structure
+    bool[,] maze;  // 2D array to store the maze structure
 
     public void GenerateMaze()
     {
@@ -62,10 +61,9 @@ public class MazeGenerate : MonoBehaviour
             }
         }
         SetBoundaries();
-        childCount = transform.childCount;
     }
 
-    private void GenerateMazeRecursive(Vector2Int cell)
+    void GenerateMazeRecursive(Vector2Int cell)
     {
         // Define the four possible directions to move in the maze
         Vector2Int[] directions = {
@@ -103,12 +101,12 @@ public class MazeGenerate : MonoBehaviour
         }
     }
 
-    private bool IsCellValid(Vector2Int cell)
+    bool IsCellValid(Vector2Int cell)
     {
         return cell.x >= 0 && cell.x < width && cell.y >= 0 && cell.y < height;
     }
 
-    private void Shuffle<T>(T[] array)
+    void Shuffle<T>(T[] array)
     {
         for (int i = 0; i < array.Length; i++)
         {
@@ -119,7 +117,7 @@ public class MazeGenerate : MonoBehaviour
         }
     }
 
-    private GameObject GetWallByChance(float chanse)
+    GameObject GetWallByChance(float chanse)
     {
         float randFloat = Random.Range(0f, 1f);
 
@@ -129,7 +127,7 @@ public class MazeGenerate : MonoBehaviour
     /// <summary>
     /// Set boundairies around the perimeter of labyrynth
     /// </summary>
-    private void SetBoundaries()
+    void SetBoundaries()
     {
         Vector3 midle = new Vector3(width * cellWidth / 2, height * cellHeight / 2, 0);
         Vector3 size = new Vector3(1, height * cellHeight + 3, 1);

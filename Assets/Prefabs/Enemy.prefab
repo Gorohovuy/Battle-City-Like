@@ -176,10 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b971e0df5388f4b92e3d2fb9e20341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootCD: 0.4
   calcPathPause: 2
   nextWaypointDistance: 0.1
   speed: 2
-  shootCD: 0.5
   target: {fileID: 0}
 --- !u!114 &-2845724068271572432
 MonoBehaviour:

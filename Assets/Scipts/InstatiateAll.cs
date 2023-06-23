@@ -1,17 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
+/// <summary>
+/// Instatiate maze, enemys and player base
+/// </summary>
 public class InstatiateAll : MonoBehaviour
 {
     public MazeGenerate maze;
     public int enemyCount;
-    public float timeInterval;
+    public float timeInterval; // Interval between enemy spawns
     public GameObject enemyPrefab;
     public GameObject basePrefab;
 
-    int enemyToSpawn;
+    int enemyToSpawn; // Personal counter
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class InstatiateAll : MonoBehaviour
         Instantiate(basePrefab, 
         GetSpawnPoint(maze.width / 3, 2 * maze.width / 3, 0, maze.height / 3), 
         Quaternion.identity);
+
         StartCoroutine(SpawnEnemy());
     }
 
@@ -59,7 +61,7 @@ public class InstatiateAll : MonoBehaviour
     {
         while (enemyToSpawn > 0)
         {
-            // Spawn enemy in half of a labyrythm
+            // Spawn enemy in top half of a labyrythm
             Instantiate(enemyPrefab, 
             GetSpawnPoint(0, maze.width, maze.height / 2, maze.height), 
             Quaternion.identity);
